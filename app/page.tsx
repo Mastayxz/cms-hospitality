@@ -6,6 +6,7 @@ import RoomsSection from "./components/RoomsSection";
 import AboutSection from "./components/AboutSection";
 import HeroSection from "./components/HeroSection";
 import { motion } from "framer-motion";
+import Image from "next/image";
 export default function Home() {
   return (
     <div>
@@ -40,7 +41,7 @@ export default function Home() {
         >
           <div className="flex items-center gap-3 mb-6">
             <h2 className="text-3xl font-semibold">OUR CHOICE</h2>
-            <img
+            <Image
               src="/shape1.png"
               className="w-[135px] h-[24px]"
               alt="Shape decoration"
@@ -87,7 +88,7 @@ export default function Home() {
         >
           <div className="flex items-center gap-3 mb-6">
             <h2 className="text-3xl font-semibold text-left">OUR SPACES</h2>
-            <img
+            <Image
               src="/shape1.png"
               className="w-[135px] h-[24px]"
               alt="Shape decoration"
