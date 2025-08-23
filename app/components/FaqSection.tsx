@@ -2,7 +2,7 @@
 
 import { motion } from "framer-motion";
 import { useState } from "react";
-
+import Image from "next/image";
 const faqs = [
   {
     question: "What time is check-in and check-out?",
@@ -44,7 +44,7 @@ export default function FaqSection() {
         {/* Title */}
         <div className="flex items-center justify-center gap-3 mb-6">
           <h2 className="text-3xl font-semibold">FAQs</h2>
-          <img
+          <Image
             src="/shape1.png"
             className="w-[135px] h-[24px]"
             alt="Shape decoration"

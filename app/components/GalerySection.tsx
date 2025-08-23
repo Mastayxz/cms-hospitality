@@ -1,6 +1,7 @@
 "use client";
 import { motion } from "framer-motion";
 import { useState } from "react";
+import Image from "next/image";
 
 const categories = [
   { key: "dining", label: "Dining & Restaurant" },
@@ -63,7 +64,7 @@ export default function GallerySection() {
               transition={{ duration: 0.9 }}
               className="min-w-[280px] flex-shrink-0 overflow-hidden  shadow-lg hover:scale-105 transition-transform duration-300"
             >
-              <img
+              <Image
                 src={src}
                 alt={activeCategory}
                 className="w-full h-68 object-cover"
@@ -83,7 +84,7 @@ export default function GallerySection() {
             transition={{ duration: 0.9 }}
             className="overflow-hidden  shadow-lg hover:scale-105 transition-transform duration-300"
           >
-            <img
+            <Image
               src={src}
               alt={activeCategory}
               className="w-full h-[608px] object-cover"

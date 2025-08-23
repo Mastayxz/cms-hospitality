@@ -1,3 +1,5 @@
+import Image from "next/image";
+
 export default function GallerySection() {
   return (
     <section
@@ -5,13 +7,17 @@ export default function GallerySection() {
       className="px-8 md:px-16 py-16 grid grid-cols-1 md:grid-cols-2 gap-12 mt-10 items-center md:flex-row-reverse flex-row"
     >
       <div className="">
-        <img src="/promo.png" alt="Promo Room" className=" shadow-lg w-full " />
+        <Image
+          src="/promo.png"
+          alt="Promo Room"
+          className=" shadow-lg w-full "
+        />
       </div>
 
       <div className="self-start">
         <div className="flex items-center gap-3 mb-6">
           <h2 className="text-3xl font-semibold text-left">FEATURED OFFER</h2>
-          <img
+          <Image
             src="/shape1.png"
             className="w-[135px] h-[24px]"
             alt="Shape decoration"
