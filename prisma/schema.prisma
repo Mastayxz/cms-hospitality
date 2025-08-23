@@ -1,0 +1,48 @@
+// schema.prisma
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model Admin {
+  id           Int      @id @default(autoincrement())
+  username     String   @unique
+  passwordHash String
+  createdAt    DateTime @default(now())
+}
+
+model Room {
+  id          Int      @id @default(autoincrement())
+  name        String
+  description String?
+  price       Int
+  features    String?   // bisa JSON juga kalau lebih kompleks
+  imageUrl    String?
+  createdAt   DateTime @default(now())
+}
+
+model Facility {
+  id          Int      @id @default(autoincrement())
+  name        String
+  description String?
+  iconUrl     String?
+  createdAt   DateTime @default(now())
+}
+
+model Gallery {
+  id        Int      @id @default(autoincrement())
+  imageUrl  String
+  createdAt DateTime @default(now())
+}
+
+model Testimonial {
+  id        Int      @id @default(autoincrement())
+  name      String
+  message   String
+  createdAt DateTime @default(now())
+}
