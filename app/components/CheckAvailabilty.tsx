@@ -1,4 +1,5 @@
 "use client";
+import { motion } from "framer-motion";
 import { useMemo, useState } from "react";
 
 export default function CheckAvailability() {
@@ -42,8 +43,7 @@ export default function CheckAvailability() {
       return;
     }
 
-    // 👉 Jika mau langsung ke WhatsApp, aktifkan blok di bawah:
-    const phone = "6287852721886"; // ganti dengan nomor WA hotel (format internasional, tanpa +)
+    const phone = "6287852721886"; // nomor WA
     const text = encodeURIComponent(
       `Halo, saya ingin cek ketersediaan kamar:
 - Check-in: ${checkIn}
@@ -59,8 +59,13 @@ Apakah tersedia?`
   }
 
   return (
-    <section className="px-6 md:px-12 py-8 bg-[#583101]  shadow-sm ">
-      <h3 className="text-2xl md:text-3xl font-semibold mb-6 text-[#ffedd8] ">
+    <motion.section
+      initial={{ opacity: 0, y: 50 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      transition={{ duration: 0.5 }}
+      className="px-6 md:px-10 py-6 bg-[#583101] shadow-sm"
+    >
+      <h3 className="text-2xl md:text-3xl font-semibold mb-6 text-[#ffedd8]">
         Check Availability
       </h3>
 
@@ -69,83 +74,113 @@ Apakah tersedia?`
         className="grid grid-cols-1 md:grid-cols-5 gap-4 md:gap-6"
       >
         {/* Check-in */}
-        <div className="flex flex-col">
-          <label className="text-sm font-medium mb-2 text-[#ffedd8] ">
+        <motion.div
+          initial={{ opacity: 0, y: 50 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.5 }}
+          className="flex flex-col"
+        >
+          <label className="text-sm font-medium mb-2 text-[#ffedd8]">
             Check-in
           </label>
           <input
             type="date"
-            className="text-[#ffedd8]  rounded-lg border border-neutral-300 px-3 py-2 focus:outline-none focus:ring-2 focus:ring-amber-700"
+            className="w-full rounded-lg text-[#583101] bg-[#ffedd8] border border-neutral-300 px-3 py-2 focus:outline-none focus:ring-2 focus:ring-amber-700"
             min={today}
             value={checkIn}
             onChange={(e) => setCheckIn(e.target.value)}
             required
           />
-        </div>
+        </motion.div>
 
         {/* Check-out */}
-        <div className="flex flex-col">
+        <motion.div
+          initial={{ opacity: 0, y: 50 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.5 }}
+          className="flex flex-col"
+        >
           <label className="text-sm font-medium mb-2 text-[#ffedd8]">
             Check-out
           </label>
           <input
             type="date"
-            className="text-[#ffedd8]  rounded-lg border border-neutral-300 px-3 py-2 focus:outline-none focus:ring-2 focus:ring-amber-700"
+            className="w-full rounded-lg text-[#583101] bg-[#ffedd8] border border-neutral-300 px-3 py-2 focus:outline-none focus:ring-2 focus:ring-amber-700"
             min={minCheckout}
             value={checkOut}
             onChange={(e) => setCheckOut(e.target.value)}
             required
           />
-        </div>
+        </motion.div>
 
         {/* Guests */}
-        <div className="flex flex-col">
+        <motion.div
+          initial={{ opacity: 0, y: 50 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.5 }}
+          className="flex flex-col"
+        >
           <label className="text-sm font-medium mb-2 text-[#ffedd8]">
             Guests
           </label>
           <input
             type="number"
             min={1}
-            className="text-[#ffedd8] rounded-lg border border-neutral-300 px-3 py-2 focus:outline-none focus:ring-2 focus:ring-amber-700"
+            className="w-full rounded-lg text-[#583101] bg-[#ffedd8] border border-neutral-300 px-3 py-2 focus:outline-none focus:ring-2 focus:ring-amber-700"
             value={guests}
             onChange={(e) => setGuests(parseInt(e.target.value || "1"))}
           />
-        </div>
+        </motion.div>
 
         {/* Rooms */}
-        <div className="flex flex-col">
+        <motion.div
+          initial={{ opacity: 0, y: 50 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.5 }}
+          className="flex flex-col"
+        >
           <label className="text-sm font-medium mb-2 text-[#ffedd8]">
             Rooms
           </label>
           <input
             type="number"
             min={1}
-            className="rounded-lg text-[#ffedd8]  border border-neutral-300 px-3 py-2 focus:outline-none focus:ring-2 focus:ring-amber-700"
+            className="w-full rounded-lg text-[#583101] bg-[#ffedd8] border border-neutral-300 px-3 py-2 focus:outline-none focus:ring-2 focus:ring-amber-700"
             value={rooms}
             onChange={(e) => setRooms(parseInt(e.target.value || "1"))}
           />
-        </div>
+        </motion.div>
 
         {/* Action */}
-        <div className="flex items-end ">
+        <motion.div
+          initial={{ opacity: 0, y: 50 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.5 }}
+          className="flex items-end"
+        >
           <button
             type="submit"
-            className="w-full md:w-auto bgs-[#583101]  text-[#ffedd8] px-6 py-3 rounded-lg font-medium hover:bg-[#462804] hover:scale-105 transition duration-300 border border-white cursor-pointer "
+            className="w-full md:w-auto bg-[#ffedd8] text-[#583101] px-6 py-3 rounded-lg font-medium hover:bg-[#e6d2b8] hover:scale-105 transition duration-300 border border-white cursor-pointer"
           >
             Cek Availability
           </button>
-        </div>
+        </motion.div>
       </form>
 
       {/* Info bar */}
-      <div className="mt-4 flex flex-wrap items-center gap-4 text-sm text-neutral-700">
-        <span className="inline-block rounded-full border px-3 py-1 text-[#ffedd8] ">
+      <motion.div
+        initial={{ opacity: 0, y: 50 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.5 }}
+        className="mt-4 flex flex-wrap items-center gap-4 text-sm"
+      >
+        <span className="inline-block rounded-full border px-3 py-1 text-[#ffedd8] border-[#ffedd8]">
           {nights > 0
             ? `${nights} malam`
             : "Pilih tanggal untuk melihat durasi"}
         </span>
-        {msg && <span className="text-red-600">{msg}</span>}
-      </div>
-    </section>
+        {msg && <span className="text-red-300">{msg}</span>}
+      </motion.div>
+    </motion.section>
   );
 }
