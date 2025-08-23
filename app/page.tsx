@@ -63,8 +63,8 @@ export default function Home() {
             experience. Our rooms are equipped with modern amenities such as
             flat-screen TVs, air conditioning, and free Wi-Fi. We also offer a
             range of amenities such as a fitness center, spa, and restaurant.
-            Whether you're looking for a romantic getaway or a family vacation,
-            Diamond Luxury Hotel has a room that's perfect for you.
+            Whether you are looking for a romantic getaway or a family vacation,
+            Diamond Luxury Hotel has a room that is perfect for you.
           </p>
         </motion.div>
       </motion.section>

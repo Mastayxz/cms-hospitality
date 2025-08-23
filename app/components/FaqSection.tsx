@@ -57,7 +57,7 @@ export default function FaqSection() {
         <p className="text-lg leading-relaxed text-gray-700 max-w-2xl mx-auto mb-10">
           Below are some frequently asked questions about our hotel. If you have
           any other questions, or need further clarification, please don’t
-          hesitate to contact us. We're here to help.
+          hesitate to contact us. We’re here to help.
         </p>
 
         {/* FAQ List */}

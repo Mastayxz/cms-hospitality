@@ -27,7 +27,7 @@ export default function GallerySection() {
         <p className="text-lg leading-relaxed text-gray-700 text-justify mb-6">
           Get special offer for Economy Luxe Room, start from Rp 1.250.000,- per
           night. This offer is valid for minimum stay 6 months, and available
-          for booking until 31th December 2023. Don't miss this opportunity to
+          for booking until 31th December 2023. Dont miss this opportunity to
           stay in our comfortable room with a reasonable price.
         </p>
 
