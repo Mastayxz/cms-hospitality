@@ -4,6 +4,10 @@
   --background: #ffedd8;
   --foreground: #583101;
 }
+.swiper-button-prev,
+.swiper-button-next {
+  color: white !important;
+}
 
 @theme inline {
   --color-background: var(--background);

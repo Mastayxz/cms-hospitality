@@ -2,7 +2,15 @@
 import { motion } from "framer-motion";
 import Image from "next/image";
 
-export default function AboutSection() {
+export default function AboutSection({
+  description,
+  image1,
+  image2,
+}: {
+  description: string;
+  image1: string;
+  image2: string;
+}) {
   return (
     <motion.section
       initial={{ opacity: 0, y: 50 }}
@@ -52,11 +60,7 @@ export default function AboutSection() {
           transition={{ duration: 0.9, delay: 0.8 }}
           className="text-lg leading-relaxed text-gray-700"
         >
-          Welcome to our luxurious hotel, where luxury meets affordability.
-          Nestled in the heart of Bali, our hotel offers a unique blend of
-          comfort and sophistication. With a carefully curated collection of
-          rooms and suites, we provide a haven for those seeking a luxurious
-          experience without breaking the bank.
+          {description}
         </motion.p>
 
         <motion.div
@@ -76,36 +80,24 @@ export default function AboutSection() {
 
       {/* Images Area */}
       <div className="flex justify-center items-center md:px-8">
-        <motion.div
-          initial={{ opacity: 0, x: -50 }}
-          animate={{ opacity: 1, x: 0 }}
-          transition={{ duration: 0.9, delay: 0.4 }}
-          className="relative flex flex-col items-center gap-6 left-6"
-        >
-          {/* Gambar 1 */}
+        {image1 && (
           <Image
-            src="/about1.png"
-            alt="Hotel Interior"
+            src={image1}
+            alt="Image 1"
             width={400}
             height={400}
             className="shadow-lg"
           />
-        </motion.div>
-        {/* Gambar 2 */}
-        <motion.div
-          initial={{ opacity: 0, x: 50 }}
-          animate={{ opacity: 1, x: 0 }}
-          transition={{ duration: 0.9, delay: 0.4 }}
-          className="-left-9 relative flex flex-col items-center gap-6"
-        >
+        )}
+        {image2 && (
           <Image
-            src="/about2.png"
-            alt="Hotel Lounge"
+            src={image2}
+            alt="Image 2"
             width={320}
             height={320}
-            className="shadow-xl"
+            className="shadow-xl -ml-6"
           />
-        </motion.div>
+        )}
       </div>
     </motion.section>
   );

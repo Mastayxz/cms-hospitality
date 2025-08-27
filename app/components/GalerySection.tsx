@@ -1,93 +1,124 @@
 "use client";
 import { motion } from "framer-motion";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Image from "next/image";
 
-const categories = [
-  { key: "dining", label: "Dining & Restaurant" },
-  { key: "parking", label: "Parking Space" },
-  { key: "resort", label: "Resort & Pool" },
-  { key: "bedrooms", label: "Bedrooms" },
-  { key: "event", label: "Event Spaces" },
-];
+interface FacilityImage {
+  id: number;
+  url: string;
+}
 
-const galleryImages: Record<string, string[]> = {
-  dining: ["/dining1.png", "/dining2.png", "/dining3.png"],
-  parking: ["/parking1.jpg", "/parking2.jpg", "/parking3.jpg"],
-  resort: ["/resort1.jpg", "/resort2.jpg", "/resort3.jpg"],
-  bedrooms: ["/product1.png", "/product2.png", "/product3.png"],
-  event: ["/event1.jpg", "/event2.jpg", "/event3.jpg"],
-};
+interface Facility {
+  id: number;
+  name: string;
+  description: string;
+  images: FacilityImage[];
+}
 
 export default function GallerySection() {
-  const [activeCategory, setActiveCategory] = useState("dining");
+  const [facilities, setFacilities] = useState<Facility[]>([]);
+  const [activeFacility, setActiveFacility] = useState<number | null>(null);
+
+  // fetch facilities
+  useEffect(() => {
+    const fetchFacilities = async () => {
+      try {
+        const res = await fetch("/api/facility");
+        if (res.ok) {
+          const data: Facility[] = await res.json();
+          setFacilities(data);
+          if (data.length > 0) setActiveFacility(data[0].id); // default pilih facility pertama
+        }
+      } catch (err) {
+        console.error("Fetch facilities error:", err);
+      }
+    };
+    fetchFacilities();
+  }, []);
+
+  // ambil facility aktif
+  const currentFacility = facilities.find((f) => f.id === activeFacility);
 
   return (
     <motion.section
-      className="px-4 md:px-16 py-4"
+      className="px-4 md:px-16 py-8"
       initial={{ opacity: 0, y: 50 }}
       whileInView={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.9 }}
     >
       {/* Navigation */}
-      <div className="flex overflow-x-auto no-scrollbar gap-6 mb-8">
-        {categories.map((cat) => (
+      <div className="flex overflow-x-auto no-scrollbar gap-6 mb-6">
+        {facilities.map((fac) => (
           <motion.button
-            key={cat.key}
-            onClick={() => setActiveCategory(cat.key)}
-            initial={{ opacity: 0, x: -50 }}
-            animate={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.9, ease: "easeInOut" }}
+            key={fac.id}
+            onClick={() => setActiveFacility(fac.id)}
+            whileTap={{ scale: 0.95 }}
             className={`relative pb-2 text-base md:text-xl whitespace-nowrap transition-all duration-300 ${
-              activeCategory === cat.key
+              activeFacility === fac.id
                 ? "text-[#583101] font-bold"
                 : "text-gray-600"
             }`}
           >
-            {cat.label}
-            {activeCategory === cat.key && (
+            {fac.name}
+            {activeFacility === fac.id && (
               <span className="absolute left-0 -bottom-1 h-0.5 w-full bg-[#583101] rounded-full transition-all duration-300"></span>
             )}
           </motion.button>
         ))}
       </div>
 
-      {/* Gallery */}
-      {/* Mobile (carousel) */}
+      {/* Description */}
+      {currentFacility && (
+        <motion.p
+          key={currentFacility.id}
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ duration: 0.6 }}
+          className="text-gray-700 mb-8 text-center max-w-2xl mx-auto"
+        >
+          {currentFacility.description || "No description available."}
+        </motion.p>
+      )}
+
+      {/* Gallery - Mobile Carousel */}
       <div className="block md:hidden overflow-x-auto no-scrollbar">
         <div className="flex gap-4">
-          {galleryImages[activeCategory].map((src, i) => (
+          {currentFacility?.images.map((img) => (
             <motion.div
-              key={i}
+              key={img.id}
               initial={{ opacity: 0, x: -50 }}
               animate={{ opacity: 1, x: 0 }}
               transition={{ duration: 0.9 }}
-              className="min-w-[280px] flex-shrink-0 overflow-hidden  shadow-lg hover:scale-105 transition-transform duration-300"
+              className="min-w-[280px] flex-shrink-0 overflow-hidden rounded-lg shadow-lg hover:scale-105 transition-transform duration-300"
             >
               <Image
-                src={src}
-                alt={activeCategory}
-                className="w-full h-68 object-cover"
+                src={img.url}
+                alt={currentFacility?.name || "facility"}
+                className="w-full h-64 object-cover"
+                width={400}
+                height={300}
               />
             </motion.div>
           ))}
         </div>
       </div>
 
-      {/* Desktop (grid) */}
+      {/* Gallery - Desktop Grid */}
       <div className="hidden md:grid grid-cols-2 lg:grid-cols-3 gap-6">
-        {galleryImages[activeCategory].map((src, i) => (
+        {currentFacility?.images.map((img) => (
           <motion.div
-            key={i}
-            initial={{ opacity: 0, x: -50 }}
-            animate={{ opacity: 1, x: 0 }}
+            key={img.id}
+            initial={{ opacity: 0, y: 50 }}
+            animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.9 }}
-            className="overflow-hidden  shadow-lg hover:scale-105 transition-transform duration-300"
+            className="overflow-hidden rounded-lg shadow-lg hover:scale-105 transition-transform duration-300"
           >
             <Image
-              src={src}
-              alt={activeCategory}
-              className="w-full h-[608px] object-cover"
+              src={img.url}
+              alt={currentFacility?.name || "facility"}
+              className="w-full h-[400px] object-cover"
+              width={600}
+              height={400}
             />
           </motion.div>
         ))}

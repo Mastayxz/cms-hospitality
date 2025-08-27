@@ -48,6 +48,8 @@ export default function FaqSection() {
             src="/shape1.png"
             className="w-[135px] h-[24px]"
             alt="Shape decoration"
+            width={135}
+            height={24}
           />
         </div>
 
