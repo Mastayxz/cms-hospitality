@@ -9,7 +9,7 @@ export default function ProductSection() {
       whileInView={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.9 }}
       id="rooms"
-      className="px-8 md:px-16 py-10 grid grid-cols-1 md:grid-cols-2 gap-12 mt-16 items-center"
+      className="px-8 md:px-16 py-4 grid grid-cols-1 md:grid-cols-2 gap-12 mt-16 items-center"
     >
       {/* Kolom Kiri */}
       <motion.div

@@ -33,7 +33,7 @@ export default function RoomsSection({ rooms }: Props) {
   };
 
   return (
-    <section className="px-4 md:px-16 py-12 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+    <section className="px-4 md:px-16 py-4 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
       {rooms.map((room) => (
         <div
           key={room.id}

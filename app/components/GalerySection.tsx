@@ -15,33 +15,25 @@ interface Facility {
   images: FacilityImage[];
 }
 
-export default function GallerySection() {
-  const [facilities, setFacilities] = useState<Facility[]>([]);
+interface Props {
+  facilities: Facility[]; // ✅ ganti dari rooms -> facilities
+}
+
+export default function GallerySection({ facilities }: Props) {
   const [activeFacility, setActiveFacility] = useState<number | null>(null);
 
-  // fetch facilities
+  // default pilih facility pertama dari props
   useEffect(() => {
-    const fetchFacilities = async () => {
-      try {
-        const res = await fetch("/api/facility");
-        if (res.ok) {
-          const data: Facility[] = await res.json();
-          setFacilities(data);
-          if (data.length > 0) setActiveFacility(data[0].id); // default pilih facility pertama
-        }
-      } catch (err) {
-        console.error("Fetch facilities error:", err);
-      }
-    };
-    fetchFacilities();
-  }, []);
+    if (facilities.length > 0) {
+      setActiveFacility(facilities[0].id);
+    }
+  }, [facilities]);
 
-  // ambil facility aktif
   const currentFacility = facilities.find((f) => f.id === activeFacility);
 
   return (
     <motion.section
-      className="px-4 md:px-16 py-8"
+      className="px-4 md:px-16 py-6"
       initial={{ opacity: 0, y: 50 }}
       whileInView={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.9 }}
@@ -74,7 +66,7 @@ export default function GallerySection() {
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ duration: 0.6 }}
-          className="text-gray-700 mb-8 text-center max-w-2xl mx-auto"
+          className="text-gray-700 my-8 text-center max-w-2xl mx-auto"
         >
           {currentFacility.description || "No description available."}
         </motion.p>
@@ -89,14 +81,14 @@ export default function GallerySection() {
               initial={{ opacity: 0, x: -50 }}
               animate={{ opacity: 1, x: 0 }}
               transition={{ duration: 0.9 }}
-              className="min-w-[280px] flex-shrink-0 overflow-hidden rounded-lg shadow-lg hover:scale-105 transition-transform duration-300"
+              className="min-w-[280px] flex-shrink-0 overflow-hidden shadow-lg hover:scale-105 transition-transform duration-300"
             >
               <Image
                 src={img.url}
                 alt={currentFacility?.name || "facility"}
                 className="w-full h-64 object-cover"
                 width={400}
-                height={300}
+                height={350}
               />
             </motion.div>
           ))}
@@ -111,14 +103,14 @@ export default function GallerySection() {
             initial={{ opacity: 0, y: 50 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.9 }}
-            className="overflow-hidden rounded-lg shadow-lg hover:scale-105 transition-transform duration-300"
+            className="overflow-hidden  shadow-lg hover:scale-105 transition-transform duration-300"
           >
             <Image
               src={img.url}
               alt={currentFacility?.name || "facility"}
-              className="w-full h-[400px] object-cover"
-              width={600}
-              height={400}
+              className="w-full h-[608px] object-cover"
+              width={439}
+              height={608}
             />
           </motion.div>
         ))}

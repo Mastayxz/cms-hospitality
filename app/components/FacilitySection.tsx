@@ -8,7 +8,7 @@ export default function FacilitySection() {
       initial={{ opacity: 0, y: 50 }}
       whileInView={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.9 }}
-      className="px-6 md:px-16 py-16 grid md:grid-cols-2 gap-12 mt-10"
+      className="px-6 md:px-16 py-10 grid md:grid-cols-2 gap-12 mt-10"
     >
       <motion.div
         initial={{ opacity: 0, x: -50 }}

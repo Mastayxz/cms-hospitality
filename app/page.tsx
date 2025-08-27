@@ -30,6 +30,14 @@ export default async function Home() {
   });
   const rooms = await roomsRes.json();
 
+  const facilitiesRes = await fetch(
+    `${process.env.NEXT_PUBLIC_BASE_URL}/api/facility`,
+    {
+      cache: "no-store",
+    }
+  );
+  const facilities = await facilitiesRes.json();
+
   return (
     <div>
       {/* Hero Section */}
@@ -64,7 +72,7 @@ export default async function Home() {
       <FacilitySection />
 
       {/* Gallery Section */}
-      <GallerySection />
+      <GallerySection facilities={facilities} />
 
       {/* FAQs */}
       <FaqSection />
