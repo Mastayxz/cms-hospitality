@@ -37,7 +37,7 @@ export default function RoomsSection({ rooms }: Props) {
       {rooms.map((room) => (
         <div
           key={room.id}
-          className="relative overflow-hidden rounded-lg shadow-lg hover:shadow-xl transition-shadow duration-300 cursor-pointer"
+          className="relative overflow-hidden  shadow-lg hover:shadow-xl transition-shadow duration-300 cursor-pointer"
           onClick={() => toggleDescription(room.id)}
         >
           <div className="relative w-full aspect-[4/3]">
@@ -93,12 +93,12 @@ export default function RoomsSection({ rooms }: Props) {
           </div>
 
           {/* Price */}
-          <span className="absolute top-2 left-2 bg-white bg-opacity-80 text-[#583101] px-3 py-1 text-sm md:text-base rounded z-10">
+          <span className="absolute top-2 left-2 bg-white bg-opacity-80 text-[#583101] px-3 py-1 text-sm md:text-base 10">
             {`Rp ${room.price.toLocaleString("id-ID")} / night`}
           </span>
 
           {/* Name */}
-          <span className="absolute bottom-2 left-2 bg-black bg-opacity-50 text-white px-3 py-1 text-sm md:text-base rounded z-10">
+          <span className="absolute bottom-2 left-2 bg-black bg-opacity-50 text-white px-3 py-1 text-sm md:text-base 10">
             {room.name}
           </span>
         </div>
