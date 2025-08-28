@@ -79,14 +79,14 @@ export default function AboutSection({
       </div>
 
       {/* Images Area */}
-      <div className="flex justify-center items-center md:px-8">
+      <div className="flex justify-center items-center gap-4 md:px-8 flex-wrap">
         {image1 && (
           <Image
             src={image1}
             alt="Image 1"
             width={400}
             height={400}
-            className="shadow-lg"
+            className="shadow-lg w-full max-w-[280px] md:max-w-[400px] h-auto rounded-lg"
           />
         )}
         {image2 && (
@@ -95,7 +95,7 @@ export default function AboutSection({
             alt="Image 2"
             width={320}
             height={320}
-            className="shadow-xl -ml-6"
+            className="shadow-xl w-full max-w-[220px] md:max-w-[320px] h-auto rounded-lg"
           />
         )}
       </div>
